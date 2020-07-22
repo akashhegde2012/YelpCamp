@@ -30,7 +30,12 @@ app.use(flash());
 
 //seedDB();  //seed the db
 
-mongoose.connect("mongodb://localhost/yelp_camp");
+// mongoose.connect("mongodb://localhost/yelp_camp");
+mongoose.connect("mongodb+srv://akashhegde2012:Akash2012$@cluster0.lz6jd.mongodb.net/yelp_camp?retryWrites=true&w=majority").then(() =>{
+    console.log('connected to db');
+}).catch(err =>{
+    console.log('error',err.message);
+});
 app.set('view engine','ejs');
 app.use(bodyParser.urlencoded({extended:true}));
 
