@@ -1,6 +1,6 @@
 var express=require('express');
 var router=express.Router();
-var passport=require('passport');
+var passport=require('passport/lib');
 var User=require('../models/user');
 //root route
 router.get('/',function(req,res){
