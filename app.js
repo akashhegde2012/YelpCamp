@@ -30,14 +30,19 @@ app.use(flash());
 
 //seedDB();  //seed the db
 
+port=process.env.PORT || 3000;
 // mongoose.connect("mongodb://localhost/yelp_camp");
-
+mongoose.connect("mongodb+srv://akashhegde2012:Akash2012$@cluster0.lz6jd.mongodb.net/yelp_camp?retryWrites=true&w=majority",{useNewUrlParser:true,useUnifiedTopology:true})
+    .then(()=>{
+        app.listen(port,()=>{console.log('Server running in port 3000')});
+    })
+    .catch((err)=> console.log(err));
+mongoose.set('useFindAndModify',false)
 app.set('view engine','ejs');
 app.use(bodyParser.urlencoded({extended:true}));
 
 
 
-port=process.env.PORT || 3000;
 
 //===========================
 //passport configuration
@@ -66,6 +71,6 @@ app.use(indexRoutes);
 app.use('/campgrounds/:id/comments',commentRoutes); 
 app.use('/campgrounds',campgroundRoutes); // adds /campgrounds to the begining of all routes in campgrounds
 
-app.listen(port,function(){
-    console.log('app started');
-});
+// app.listen(port,function(){
+//     console.log('app started');
+// });
